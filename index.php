@@ -87,7 +87,7 @@ $hotels = [
                     </span>
                     <span>
                         <?php if ($item['distance_to_center']) {
-                    echo '<i class="fa-regular fa-compass"></i>' . ' ' . $item['distance_to_center'] . ' dal centro';
+                    echo '<i class="fa-regular fa-compass"></i>' . ' ' . $item['distance_to_center'] . ' km dal centro';
                 } ?>
                     </span>
                 </div>
