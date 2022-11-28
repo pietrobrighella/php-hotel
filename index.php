@@ -3,35 +3,35 @@
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
-        'description' => 'Hotel Belvedere Descrizione',
+        'description' => 'Hotel Belvedere, sit amet consectetur adipisicing elit. Debitis fuga illum iste vero eum quis natus hic ad, ex nulla temporibus ipsam dolores tempore laborum. Eius similique necessitatibus quod illum.',
         'parking' => true,
         'vote' => 4,
         'distance_to_center' => 10.4
     ],
     [
         'name' => 'Hotel Futuro',
-        'description' => 'Hotel Futuro Descrizione',
+        'description' => 'Hotel Futuro, sit amet consectetur adipisicing elit. Debitis fuga illum iste vero eum quis natus hic ad, ex nulla temporibus ipsam dolores tempore laborum. Eius similique necessitatibus quod illum.',
         'parking' => true,
         'vote' => 2,
         'distance_to_center' => 2
     ],
     [
         'name' => 'Hotel Rivamare',
-        'description' => 'Hotel Rivamare Descrizione',
+        'description' => 'Hotel Rivamare, sit amet consectetur adipisicing elit. Debitis fuga illum iste vero eum quis natus hic ad, ex nulla temporibus ipsam dolores tempore laborum. Eius similique necessitatibus quod illum.',
         'parking' => false,
         'vote' => 1,
         'distance_to_center' => 1
     ],
     [
         'name' => 'Hotel Bellavista',
-        'description' => 'Hotel Bellavista Descrizione',
+        'description' => 'Hotel Bellavista, sit amet consectetur adipisicing elit. Debitis fuga illum iste vero eum quis natus hic ad, ex nulla temporibus ipsam dolores tempore laborum. Eius similique necessitatibus quod illum.',
         'parking' => false,
         'vote' => 5,
         'distance_to_center' => 5.5
     ],
     [
         'name' => 'Hotel Milano',
-        'description' => 'Hotel Milano Descrizione',
+        'description' => 'Hotel Milano, sit amet consectetur adipisicing elit. Debitis fuga illum iste vero eum quis natus hic ad, ex nulla temporibus ipsam dolores tempore laborum. Eius similique necessitatibus quod illum.',
         'parking' => true,
         'vote' => 2,
         'distance_to_center' => 50
@@ -61,21 +61,39 @@ $hotels = [
 
 <body>
     <div class="container">
-        <?php foreach ($hotels as $item) { ?>
-        <?php
-            echo '<h5>' . $item['name'] . '</h5>';
-            echo '<p>' . $item['description'] . '</p>';
-            if ($item['parking']) {
-                echo '<i class="fa-solid fa-square-parking"></i>';
-            }
-            if (!empty($item['vote'])) {
-                echo str_repeat('<i class="fa-solid fa-star"></i>', $item['vote']);
-            }
-            if ($item['distance_to_center']) {
-                echo '<p><i class="fa-regular fa-compass"></i>' . ' ' . $item['distance_to_center'] . ' dal centro</p>';
-            }
-        ?>
-        <?php } ?>
+        <div class="row row-cols-4 gap-3">
+            <?php foreach ($hotels as $item) { ?>
+            <div class="card text-center col px-0">
+                <div class="card-header">
+                    <h5>
+                        <?php echo $item['name'] ?>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <?php echo $item['description'] ?>
+                    </p>
+                    <span>
+                        <?php if (!empty($item['vote'])) {
+                    echo str_repeat('<i class="fa-solid fa-star"></i>', $item['vote']);
+                } ?>
+                    </span>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                    <span>
+                        <?php if ($item['parking']) {
+                    echo '<i class="fa-solid fa-square-parking"></i>';
+                } ?>
+                    </span>
+                    <span>
+                        <?php if ($item['distance_to_center']) {
+                    echo '<i class="fa-regular fa-compass"></i>' . ' ' . $item['distance_to_center'] . ' dal centro';
+                } ?>
+                    </span>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
     </div>
 </body>
 
