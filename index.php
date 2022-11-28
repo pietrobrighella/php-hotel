@@ -39,6 +39,27 @@ $hotels = [
 
 ];
 
+// if (isset($_GET['parking']) || isset($_GET['5star']) || isset($_GET['4star']) || isset($_GET['3star']) || isset($_GET['2star']) || isset($_GET['1star'])) {
+
+$temp = [];
+
+foreach ($hotels as $key => $i) {
+    if (isset($_GET['5star']) && $i['vote'] == $_GET['5star'] || isset($_GET['4star']) && $i['vote'] == $_GET['4star'] || isset($_GET['3star']) && $i['vote'] == $_GET['3star'] || isset($_GET['2star']) && $i['vote'] == $_GET['2star'] || isset($_GET['1star']) && $i['vote'] == $_GET['1star']) {
+        $temp[] = $i;
+    }
+
+    if (isset($_GET['parking']) && $i['parking'] == $_GET['parking'] && !empty($temp)) {
+        unset($temp[$key]);
+
+    } elseif (isset($_GET['parking']) && $i['parking'] == $_GET['parking']) {
+        $temp[] = $i;
+    }
+}
+
+if ($temp != []) {
+    $hotels = $temp;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +81,49 @@ $hotels = [
 </head>
 
 <body>
-    <div class="container">
+    <div class="container pt-4">
+        <h3>Filtra gli hotel:</h3>
+        <form action="./index.php" class="d-flex align-items-baseline" method="get" name="filter_hotel">
+            <div class="form-check pb-4 mx-3">
+                <input class="form-check-input" type="checkbox" value="true" id="parking" name="parking">
+                <label class="form-check-label" for="parking">
+                    Hotel con parcheggio
+                </label>
+            </div>
+            <div class="form-check pb-4 mx-3">
+                <input class="form-check-input" type="checkbox" value="5" id="5star" name="5star">
+                <label class="form-check-label" for="5star">
+                    <?php echo str_repeat('<i class="fa-solid fa-star"></i>', 5); ?>
+                </label>
+            </div>
+            <div class="form-check pb-4 mx-3">
+                <input class="form-check-input" type="checkbox" value="4" id="4star" name="4star">
+                <label class="form-check-label" for="4star">
+                    <?php echo str_repeat('<i class="fa-solid fa-star"></i>', 4); ?>
+                </label>
+            </div>
+            <div class="form-check pb-4 mx-3">
+                <input class="form-check-input" type="checkbox" value="3" id="3star" name="3star">
+                <label class="form-check-label" for="3star">
+                    <?php echo str_repeat('<i class="fa-solid fa-star"></i>', 3); ?>
+                </label>
+            </div>
+            <div class="form-check pb-4 mx-3">
+                <input class="form-check-input" type="checkbox" value="2" id="2star" name="2star">
+                <label class="form-check-label" for="2star">
+                    <?php echo str_repeat('<i class="fa-solid fa-star"></i>', 2); ?>
+                </label>
+            </div>
+            <div class="form-check pb-4 mx-3">
+                <input class="form-check-input" type="checkbox" value="1" id="1star" name="1star">
+                <label class="form-check-label" for="1star">
+                    <?php echo str_repeat('<i class="fa-solid fa-star"></i>', 1); ?>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary h-100 mx-2">Filtra</button>
+        </form>
+
+        <!-- CREAZIONE CARD -->
         <div class="row row-cols-4 gap-3">
             <?php foreach ($hotels as $item) { ?>
             <div class="card text-center col px-0">
